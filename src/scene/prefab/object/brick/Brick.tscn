@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/scene/prefab/object/brick/Brick.gd" type="Script" id=1]
+[ext_resource path="res://src/assets/texture/object/brick/brick_speed.png" type="Texture" id=2]
+[ext_resource path="res://src/assets/texture/object/brick/brick.png" type="Texture" id=3]
+[ext_resource path="res://src/assets/texture/object/brick/brick_ball.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20, 10.333 )
+
+[node name="Brick" type="Area2D" groups=["Brick"]]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 0.5 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.500001, 2.38419e-07 )
+scale = Vector2( 0.640625, 0.3125 )
+texture = ExtResource( 3 )
+
+[node name="BallSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( -3.55271e-15, -1 )
+scale = Vector2( 0.640625, 0.3125 )
+texture = ExtResource( 4 )
+
+[node name="SpeedSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( -3.55271e-15, 0 )
+scale = Vector2( 0.640625, 0.3125 )
+texture = ExtResource( 2 )

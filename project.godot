@@ -10,9 +10,16 @@ config_version=4
 
 [application]
 
-config/name="BreakoutHelp"
-run/main_scene="res://BreakoutTest.tscn"
+config/name="Godot Breakout"
+config/description="A Breakout Clone made in Godot Engine 3.5.3"
+run/main_scene="res://src/scene/level/BreakoutTest.tscn"
+boot_splash/image="res://src/assets/texture/splash.png"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
+
+[autoload]
+
+Main="*res://src/assets/script/Main.gd"
 
 [gui]
 

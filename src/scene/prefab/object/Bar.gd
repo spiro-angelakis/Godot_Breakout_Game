@@ -1,10 +1,13 @@
 extends KinematicBody2D
 
 
-export var speed = 20
+export var speed = 50
 
 var limit_right = false
 var limit_left = false
+
+
+onready var anim = $AnimationPlayer
 
 
 func _physics_process(delta):
@@ -19,25 +22,23 @@ func _physics_process(delta):
 			direction.x = 1
 	
 	
-	var velocity = direction * speed
+	var real_speed = speed + (Main.speed * 10) + (Main.extra_speed * 20)
+	
+	var velocity = direction * real_speed
 	
 	
 	move_and_slide(velocity, Vector2.UP)
 
 
-func _on_RightArea_body_entered(body):
-	if body == self:
-		limit_right = true
+
+func bounced():
+	anim.play("bounce")
 
 
-func _on_LeftArea_body_entered(body):
-	if body == self:
-		limit_left = true
 
 
-func _on_RightArea_body_exited(body):
-	limit_right = false
 
 
-func _on_LeftArea_body_exited(body):
-	limit_left = false
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "bounce":
+		anim.play("idle")
