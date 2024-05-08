@@ -1,11 +1,14 @@
 extends Area2D
 
+class_name Ball
+
 var break_particles_prefab = preload("res://src/scene/prefab/particle/BallParticles.tscn").duplicate()
 
 onready var death_sfx = $BallDeathAudio
 onready var wall_sfx = $WallBallAudio
 
 onready var sprite = $Sprite
+onready var col = $CollisionShape2D
 
 
 
@@ -24,8 +27,6 @@ var dead = false
 
 
 func _ready():
-	
-	Main.balls.append(self)
 	
 	if do_start_wait:
 		yield(get_tree().create_timer(1.0),"timeout")
@@ -61,6 +62,10 @@ func bounce(other_object):
 	col_dir = Vector2(clamp(col_dir.x,-1,1),clamp(col_dir.y,-1,1))
 	col_dir = -col_dir
 	
+	if position.y > 235:
+		if col_dir.y > 0:
+			col_dir.y = -col_dir.y
+	
 	if other_object.is_in_group("Top"):
 		col_dir = Vector2(0,1)
 		wall_sfx.play()
@@ -71,7 +76,8 @@ func bounce(other_object):
 		col_dir = Vector2(-1,0)
 		wall_sfx.play()
 	
-	if other_object.is_in_group("Bar"):
+	#if other_object.is_in_group("Bar"):
+	if other_object is Paddle:
 		col_dir = Vector2(0,-1)
 		other_object.bounced()
 	
@@ -83,9 +89,14 @@ func bounce(other_object):
 	
 
 
-func break_ball():
-	death_sfx.play()
+func break_ball(is_death=true):
+	
+	if is_death:
+		death_sfx.play()
+	
 	visible = false
+	col.disabled = true
+	
 	
 	var p = break_particles_prefab.instance().duplicate()
 	p.color = sprite.modulate
@@ -93,20 +104,21 @@ func break_ball():
 	
 	Main.level.particles.add_child(p)
 	
-	if Main.balls.has(self):
-		Main.balls.remove(Main.balls.find(self))
-	
 	
 	yield(get_tree().create_timer(1.0), "timeout")
-	if dead:
-		get_tree().quit()
-	else:
-		queue_free()
+	
+	if not is_death:
+		Main.level.ball_broken_by_command()
+	
+#	if dead:
+#		get_tree().quit()
+#	else:
+	queue_free()
 
 func ball_death():
 	stop()
 	
-	if Main.balls.size() == 1:
+	if Main.level.balls.get_child_count() == 1:
 		dead = true
 	
 	break_ball()
@@ -121,11 +133,13 @@ func _on_Ball_body_exited(body):
 
 
 func _on_Ball_area_entered(area):
-	bounce(area)
-	if area.is_in_group("Brick"):
-		area.break_brick()
-	if area.is_in_group("Bottom"):
-		ball_death()
+	if not area.is_in_group("Boom"):
+		bounce(area)
+		if area.is_in_group("Brick"):
+		#if area is Brick:
+			area.break_brick()
+		if area.is_in_group("Bottom"):
+			ball_death()
 
 
 

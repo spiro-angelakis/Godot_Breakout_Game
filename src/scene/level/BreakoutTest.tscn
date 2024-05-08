@@ -1,17 +1,35 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/scene/prefab/object/Bar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/assets/texture/screen_outline.png" type="Texture" id=2]
 [ext_resource path="res://src/assets/texture/white_gradient_background.png" type="Texture" id=3]
 [ext_resource path="res://src/scene/level/BreakoutTest.gd" type="Script" id=4]
 [ext_resource path="res://src/assets/font/sorena/Fonts/ttf/Sorena-Normal.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://src/assets/audio/sfx/powerup/speed_powerup.wav" type="AudioStream" id=6]
+[ext_resource path="res://src/assets/audio/sfx/powerup/paddle_powerup.wav" type="AudioStream" id=7]
+[ext_resource path="res://src/assets/audio/sfx/powerup/ball_powerup.wav" type="AudioStream" id=8]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 107.5, 507.5 )
 
+[sub_resource type="AudioStreamRandomPitch" id=4]
+audio_stream = ExtResource( 8 )
+random_pitch = 1.5
+
+[sub_resource type="AudioStreamRandomPitch" id=5]
+audio_stream = ExtResource( 7 )
+random_pitch = 1.5
+
+[sub_resource type="AudioStreamRandomPitch" id=6]
+audio_stream = ExtResource( 6 )
+random_pitch = 1.5
+
 [sub_resource type="DynamicFont" id=3]
 size = 64
 font_data = ExtResource( 5 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 256, 300 )
 
 [node name="BreakoutTest" type="Node2D"]
 script = ExtResource( 4 )
@@ -30,35 +48,67 @@ current = true
 
 [node name="Bricks" type="Node2D" parent="."]
 
-[node name="ScreenSides" type="Node2D" parent="."]
+[node name="ScreenSideAreas" type="Node2D" parent="."]
 
-[node name="RightArea" type="Area2D" parent="ScreenSides" groups=["Right"]]
+[node name="RightArea" type="Area2D" parent="ScreenSideAreas" groups=["Right"]]
 position = Vector2( 0, -133 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenSides/RightArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenSideAreas/RightArea"]
 position = Vector2( 611, 140 )
 shape = SubResource( 2 )
 
-[node name="LeftArea" type="Area2D" parent="ScreenSides" groups=["Left"]]
+[node name="LeftArea" type="Area2D" parent="ScreenSideAreas" groups=["Left"]]
 position = Vector2( -1224, 0 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenSides/LeftArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenSideAreas/LeftArea"]
 position = Vector2( 611, -1.75 )
 shape = SubResource( 2 )
 
-[node name="TopArea" type="Area2D" parent="ScreenSides" groups=["Top"]]
+[node name="TopArea" type="Area2D" parent="ScreenSideAreas" groups=["Top"]]
 position = Vector2( 0, -403 )
 rotation = 1.5708
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenSides/TopArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenSideAreas/TopArea"]
 position = Vector2( 0, -1.5 )
 shape = SubResource( 2 )
 
-[node name="BottomArea" type="Area2D" parent="ScreenSides" groups=["Bottom"]]
+[node name="BottomArea" type="Area2D" parent="ScreenSideAreas" groups=["Bottom"]]
 position = Vector2( 0, 406 )
 rotation = 1.5708
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenSides/BottomArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenSideAreas/BottomArea"]
+position = Vector2( 0, -1.5 )
+shape = SubResource( 2 )
+
+[node name="ScreenSideWalls" type="Node2D" parent="."]
+
+[node name="RightArea" type="StaticBody2D" parent="ScreenSideWalls" groups=["Right"]]
+position = Vector2( 11, -133 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenSideWalls/RightArea"]
+position = Vector2( 611, 140 )
+shape = SubResource( 2 )
+
+[node name="LeftArea" type="StaticBody2D" parent="ScreenSideWalls" groups=["Left"]]
+position = Vector2( -1235, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenSideWalls/LeftArea"]
+position = Vector2( 611, -1.75 )
+shape = SubResource( 2 )
+
+[node name="TopArea" type="StaticBody2D" parent="ScreenSideWalls" groups=["Top"]]
+position = Vector2( 0, -418 )
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenSideWalls/TopArea"]
+position = Vector2( 0, -1.5 )
+shape = SubResource( 2 )
+
+[node name="BottomArea" type="StaticBody2D" parent="ScreenSideWalls" groups=["Bottom"]]
+position = Vector2( 0, 417 )
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenSideWalls/BottomArea"]
 position = Vector2( 0, -1.5 )
 shape = SubResource( 2 )
 
@@ -66,11 +116,26 @@ shape = SubResource( 2 )
 
 [node name="Particles" type="Node2D" parent="."]
 
+[node name="PowerupSFX" type="Node2D" parent="."]
+
+[node name="BallPowerupSFX" type="AudioStreamPlayer" parent="PowerupSFX"]
+stream = SubResource( 4 )
+bus = "Powerup"
+
+[node name="PaddlePowerupSFX" type="AudioStreamPlayer" parent="PowerupSFX"]
+stream = SubResource( 5 )
+bus = "Powerup"
+
+[node name="SpeedPowerupSFX" type="AudioStreamPlayer" parent="PowerupSFX"]
+stream = SubResource( 6 )
+bus = "Powerup"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 
 [node name="LevelLabel" type="RichTextLabel" parent="CanvasLayer/CenterContainer"]
 margin_left = 262.0
@@ -78,16 +143,44 @@ margin_top = 250.0
 margin_right = 762.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 500, 100 )
+mouse_filter = 2
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center]Level   1[/center]"
 text = "Level   1"
 scroll_active = false
 
+[node name="PowerupMenu" type="Control" parent="CanvasLayer"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+mouse_filter = 2
+
+[node name="PowerupLabelVBox" type="VBoxContainer" parent="CanvasLayer/PowerupMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
 [node name="LevelTextTween" type="Tween" parent="."]
 
-[connection signal="body_entered" from="ScreenSides/RightArea" to="." method="_on_RightArea_body_entered"]
-[connection signal="body_exited" from="ScreenSides/RightArea" to="." method="_on_RightArea_body_exited"]
-[connection signal="body_entered" from="ScreenSides/LeftArea" to="." method="_on_LeftArea_body_entered"]
-[connection signal="body_exited" from="ScreenSides/LeftArea" to="." method="_on_LeftArea_body_exited"]
-[connection signal="body_entered" from="ScreenSides/TopArea" to="." method="_on_TopArea_body_entered"]
+[node name="Position2D" type="Position2D" parent="."]
+
+[node name="MobileButtons" type="Node2D" parent="."]
+
+[node name="LeftTouch" type="TouchScreenButton" parent="MobileButtons"]
+position = Vector2( -517, -295 )
+shape = SubResource( 7 )
+
+[node name="RightTouch" type="TouchScreenButton" parent="MobileButtons"]
+position = Vector2( 4, -295 )
+shape = SubResource( 7 )
+
+[connection signal="body_entered" from="ScreenSideAreas/RightArea" to="." method="_on_RightArea_body_entered"]
+[connection signal="body_exited" from="ScreenSideAreas/RightArea" to="." method="_on_RightArea_body_exited"]
+[connection signal="body_entered" from="ScreenSideAreas/LeftArea" to="." method="_on_LeftArea_body_entered"]
+[connection signal="body_exited" from="ScreenSideAreas/LeftArea" to="." method="_on_LeftArea_body_exited"]
+[connection signal="body_entered" from="ScreenSideAreas/TopArea" to="." method="_on_TopArea_body_entered"]
+[connection signal="pressed" from="MobileButtons/LeftTouch" to="." method="_on_LeftTouch_pressed"]
+[connection signal="released" from="MobileButtons/LeftTouch" to="." method="_on_LeftTouch_released"]
+[connection signal="pressed" from="MobileButtons/RightTouch" to="." method="_on_RightTouch_pressed"]
+[connection signal="released" from="MobileButtons/RightTouch" to="." method="_on_RightTouch_released"]

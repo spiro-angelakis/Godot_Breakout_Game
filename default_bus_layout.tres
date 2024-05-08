@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=4 format=2]
+[gd_resource type="AudioBusLayout" load_steps=5 format=2]
 
 [sub_resource type="AudioEffectLowPassFilter" id=1]
 resource_name = "LowPassFilter"
@@ -12,12 +12,16 @@ cutoff_hz = 1000.0
 resource_name = "LowPassFilter"
 cutoff_hz = 700.0
 
+[sub_resource type="AudioEffectLowPassFilter" id=4]
+resource_name = "LowPassFilter"
+cutoff_hz = 900.0
+
 [resource]
 bus/1/name = "SFX"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = 0.0
+bus/1/volume_db = 0.267241
 bus/1/send = "Master"
 bus/2/name = "BrickBreak"
 bus/2/solo = false
@@ -43,3 +47,17 @@ bus/4/volume_db = -4.24723
 bus/4/send = "SFX"
 bus/4/effect/0/effect = SubResource( 3 )
 bus/4/effect/0/enabled = true
+bus/5/name = "Powerup"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = 0.0
+bus/5/send = "SFX"
+bus/6/name = "Explosion"
+bus/6/solo = false
+bus/6/mute = false
+bus/6/bypass_fx = false
+bus/6/volume_db = -1.51925
+bus/6/send = "SFX"
+bus/6/effect/0/effect = SubResource( 4 )
+bus/6/effect/0/enabled = true
