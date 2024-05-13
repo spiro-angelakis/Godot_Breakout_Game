@@ -1,6 +1,6 @@
 # Godot Breakout
 
-![Godot Breakout Icon](https://github.com/spiro-angelakis/Godot_Breakout_Game/blob/icon.png?raw=true)
+![Godot Breakout Icon](https://github.com/spiro-angelakis/Godot_Breakout_Game/blob/main/icon.png?raw=true)
 
 An example breakout clone made in Godot Engine version 3.5.3.
 
