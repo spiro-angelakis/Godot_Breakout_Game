@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/assets/texture/particle/fire_particle1.png" type="Texture" id=1]
+[ext_resource path="res://src/scene/prefab/effect/Explosion.gd" type="Script" id=2]
+[ext_resource path="res://src/assets/audio/sfx/effect/explosion.wav" type="AudioStream" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 54.3323
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0.2 ), 0.0, 0.0, 0, 0, Vector2( 0.262376, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.0181818 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=3]
+colors = PoolColorArray( 0, 0, 0, 1, 0.371094, 0.371094, 0.371094, 1 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.217877, 0.318436, 0.860335, 1 )
+colors = PoolColorArray( 1, 1, 1, 0.605505, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0 )
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.106145, 0.296089, 0.458101, 0.502793, 0.547486, 0.709497, 0.854749, 1 )
+colors = PoolColorArray( 1, 1, 1, 0.196078, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.784943, 0.0507813, 1, 1, 0.304688, 0, 1, 1, 0.445313, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.619195 )
+
+[sub_resource type="AudioStreamRandomPitch" id=6]
+audio_stream = ExtResource( 3 )
+random_pitch = 1.5
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="BoomArea2D" type="Area2D" parent="." groups=["Boom"]]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoomArea2D"]
+shape = SubResource( 1 )
+
+[node name="SmokeParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 180
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource( 1 )
+emission_shape = 1
+emission_sphere_radius = 5.7
+direction = Vector2( 0, 0 )
+spread = 180.0
+gravity = Vector2( 0, -10 )
+initial_velocity = 82.57
+scale_amount = 0.1
+scale_amount_random = 0.56
+scale_amount_curve = SubResource( 2 )
+color_ramp = SubResource( 3 )
+
+[node name="FireParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 32
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.9
+randomness = 0.79
+texture = ExtResource( 1 )
+emission_shape = 1
+emission_sphere_radius = 5.7
+spread = 180.0
+initial_velocity = 82.57
+scale_amount = 0.1
+scale_amount_random = 0.56
+scale_amount_curve = SubResource( 2 )
+color_ramp = SubResource( 4 )
+color_initial_ramp = SubResource( 5 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="ExplosionSFX" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 6 )
+pitch_scale = 0.95
+autoplay = true
+bus = "Explosion"
+
+[connection signal="area_entered" from="BoomArea2D" to="." method="_on_BoomArea2D_area_entered"]
+[connection signal="body_entered" from="BoomArea2D" to="." method="_on_BoomArea2D_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

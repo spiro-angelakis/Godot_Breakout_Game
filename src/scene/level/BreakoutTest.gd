@@ -47,6 +47,7 @@ const initial_ball_pos = Vector2(-1, 170)
 var brick_pos = Vector2(0,0)
 
 var level_active = false
+var level_finished = false
 
 var game_over = false
 
@@ -55,6 +56,11 @@ var game_over = false
 func _process(delta):
 	if level_active:
 		if not game_over:
+			
+			if bricks.get_child_count() == 0:
+				end_level()
+				return
+			
 			if balls.get_child_count() == 0:
 				if bricks.get_child_count() != 0:
 					do_game_over()
@@ -65,6 +71,7 @@ func do_game_over():
 		game_over = true
 		
 		Main.level_number = 1
+		Main.speed = 1
 		
 		level_text_tween.stop_all()
 		level_label.bbcode_text = str("[center]GAME OVER![/center]")
@@ -107,6 +114,7 @@ func start_level():
 	spawn_ball()
 	
 	level_active = true
+	level_finished = false
 
 
 func build_bricks():
@@ -236,6 +244,18 @@ func build_bricks():
 								clr = Color(1,0.0,0.0,1)
 						
 						brick.get_child(1).modulate = clr
+						
+						
+						var brick_out = false
+						if brick.position.x > 490 or brick.position.x < -490:
+							brick_out = true
+						
+						if brick.position.y > 280 or brick.position.y < -280:
+							brick_out = true
+						
+						if brick_out:
+							brick.queue_free()
+						
 				brick_pos.y += brick_offset.y
 				
 				if did_brick:
@@ -262,15 +282,17 @@ func spawn_ball(where=null, do_wait=true):
 
 
 
-func brick_broken():
-	yield(get_tree().create_timer(0.1), "timeout")
-	if bricks.get_child_count() == 0:
-		end_level()
+#func brick_broken():
+#	yield(get_tree().create_timer(0.1), "timeout")
+#	if bricks.get_child_count() == 0:
+#		end_level()
 
 
 func end_level():
 	level_active = false
 	get_tree().call_group("Ball", "stop")
+	
+	yield(get_tree().create_timer(0.1), "timeout")
 	
 	for ball in balls.get_children():
 		if ball != null and is_instance_valid(ball):
@@ -281,12 +303,17 @@ func end_level():
 
 func ball_broken_by_command():
 	yield(get_tree().create_timer(0.25), "timeout")
+	
+	
 	if balls.get_child_count() == 0:
-		Main.speed += 0.25
-		if Main.speed >= 10:
-			Main.speed == 10
-		Main.level_number += 1
-		start_level()
+		
+		if not level_finished:
+			level_finished = true
+			Main.speed += 0.1
+			if Main.speed >= 10:
+				Main.speed == 10
+			Main.level_number += 1
+			start_level()
 
 
 
@@ -355,7 +382,7 @@ func _on_RightTouch_pressed():
 
 
 func _on_LeftTouch_released():
-	bar.screen_left = true
+	bar.screen_left = false
 
 
 func _on_RightTouch_released():

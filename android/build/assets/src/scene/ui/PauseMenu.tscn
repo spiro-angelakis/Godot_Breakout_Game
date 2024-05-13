@@ -1,0 +1,226 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/assets/font/sorena/Fonts/ttf/Sorena-Normal.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://src/scene/ui/PauseMenu.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0.686275 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 1 )
+
+[node name="PauseMenu" type="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 2 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="PauseOptionsVBox" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 108.0
+margin_top = 49.0
+margin_right = 916.0
+margin_bottom = 550.0
+rect_min_size = Vector2( 800, 300 )
+mouse_filter = 2
+
+[node name="PauseOptionsText" type="RichTextLabel" parent="CenterContainer/PauseOptionsVBox"]
+margin_right = 808.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 0, 50 )
+mouse_filter = 2
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center]Game     Paused[/center]"
+text = "Game     Paused"
+fit_content_height = true
+scroll_active = false
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PauseOptionsVBox"]
+margin_top = 60.0
+margin_right = 808.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 10 )
+mouse_filter = 2
+
+[node name="Spacing" type="Control" parent="CenterContainer/PauseOptionsVBox"]
+margin_top = 74.0
+margin_right = 808.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 0, 20 )
+mouse_filter = 2
+
+[node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/PauseOptionsVBox"]
+margin_top = 98.0
+margin_right = 808.0
+margin_bottom = 178.0
+rect_min_size = Vector2( 0, 80 )
+mouse_filter = 2
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/PauseOptionsVBox/CenterContainer2"]
+margin_left = 254.0
+margin_top = 2.0
+margin_right = 554.0
+margin_bottom = 77.0
+rect_min_size = Vector2( 300, 75 )
+focus_neighbour_top = NodePath("../../CenterContainer/ReturnToMenuButton")
+focus_neighbour_bottom = NodePath("../../FullscreenHBox/FullscreenButton")
+focus_next = NodePath("../../FullscreenHBox/FullscreenButton")
+focus_previous = NodePath("../../CenterContainer/ReturnToMenuButton")
+custom_fonts/font = SubResource( 2 )
+text = "Resume"
+
+[node name="Spacing7" type="Control" parent="CenterContainer/PauseOptionsVBox"]
+margin_top = 182.0
+margin_right = 808.0
+margin_bottom = 202.0
+rect_min_size = Vector2( 0, 20 )
+mouse_filter = 2
+
+[node name="FullscreenHBox" type="HBoxContainer" parent="CenterContainer/PauseOptionsVBox"]
+margin_top = 206.0
+margin_right = 808.0
+margin_bottom = 267.0
+rect_min_size = Vector2( 0, 50 )
+mouse_filter = 2
+
+[node name="FullscreenText" type="RichTextLabel" parent="CenterContainer/PauseOptionsVBox/FullscreenHBox"]
+margin_right = 400.0
+margin_bottom = 61.0
+rect_min_size = Vector2( 400, 50 )
+mouse_filter = 2
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center]Fullscreen   Mode :[/center]"
+text = "Fullscreen   Mode :"
+scroll_active = false
+
+[node name="Spacing" type="Control" parent="CenterContainer/PauseOptionsVBox/FullscreenHBox"]
+margin_left = 404.0
+margin_right = 604.0
+margin_bottom = 61.0
+rect_min_size = Vector2( 200, 0 )
+mouse_filter = 2
+
+[node name="FullscreenButton" type="Button" parent="CenterContainer/PauseOptionsVBox/FullscreenHBox"]
+margin_left = 608.0
+margin_right = 808.0
+margin_bottom = 61.0
+rect_min_size = Vector2( 200, 50 )
+focus_neighbour_top = NodePath("../../CenterContainer2/ResumeButton")
+focus_neighbour_bottom = NodePath("../../SoundVolumeHBox/VolumeSlider")
+focus_next = NodePath("../../SoundVolumeHBox/VolumeSlider")
+focus_previous = NodePath("../../CenterContainer2/ResumeButton")
+custom_fonts/font = SubResource( 2 )
+text = "Windowed"
+
+[node name="Spacing2" type="Control" parent="CenterContainer/PauseOptionsVBox"]
+margin_top = 271.0
+margin_right = 808.0
+margin_bottom = 291.0
+rect_min_size = Vector2( 0, 20 )
+mouse_filter = 2
+
+[node name="SoundVolumeHBox" type="HBoxContainer" parent="CenterContainer/PauseOptionsVBox"]
+margin_top = 295.0
+margin_right = 808.0
+margin_bottom = 345.0
+rect_min_size = Vector2( 0, 50 )
+mouse_filter = 2
+
+[node name="SoundVolumeText" type="RichTextLabel" parent="CenterContainer/PauseOptionsVBox/SoundVolumeHBox"]
+margin_right = 400.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 400, 50 )
+mouse_filter = 2
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center]Sound   Volume :[/center]"
+text = "Sound   Volume :"
+scroll_active = false
+
+[node name="Spacing" type="Control" parent="CenterContainer/PauseOptionsVBox/SoundVolumeHBox"]
+margin_left = 404.0
+margin_right = 454.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 0 )
+mouse_filter = 2
+
+[node name="VolumeSlider" type="HSlider" parent="CenterContainer/PauseOptionsVBox/SoundVolumeHBox"]
+margin_left = 458.0
+margin_right = 808.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 350, 50 )
+focus_neighbour_top = NodePath("../../FullscreenHBox/FullscreenButton")
+focus_neighbour_bottom = NodePath("../../CenterContainer/ReturnToMenuButton")
+focus_next = NodePath("../../CenterContainer/ReturnToMenuButton")
+focus_previous = NodePath("../../FullscreenHBox/FullscreenButton")
+min_value = -80.0
+max_value = 6.0
+tick_count = 86
+
+[node name="Spacing3" type="Control" parent="CenterContainer/PauseOptionsVBox"]
+margin_top = 349.0
+margin_right = 808.0
+margin_bottom = 369.0
+rect_min_size = Vector2( 0, 20 )
+mouse_filter = 2
+
+[node name="Spacing4" type="Control" parent="CenterContainer/PauseOptionsVBox"]
+margin_top = 373.0
+margin_right = 808.0
+margin_bottom = 393.0
+rect_min_size = Vector2( 0, 20 )
+mouse_filter = 2
+
+[node name="Spacing5" type="Control" parent="CenterContainer/PauseOptionsVBox"]
+margin_top = 397.0
+margin_right = 808.0
+margin_bottom = 417.0
+rect_min_size = Vector2( 0, 20 )
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/PauseOptionsVBox"]
+margin_top = 421.0
+margin_right = 808.0
+margin_bottom = 501.0
+rect_min_size = Vector2( 0, 80 )
+mouse_filter = 2
+
+[node name="ReturnToMenuButton" type="Button" parent="CenterContainer/PauseOptionsVBox/CenterContainer"]
+margin_left = 254.0
+margin_top = 2.0
+margin_right = 554.0
+margin_bottom = 77.0
+rect_min_size = Vector2( 300, 75 )
+focus_neighbour_top = NodePath("../../SoundVolumeHBox/VolumeSlider")
+focus_neighbour_bottom = NodePath("../../CenterContainer2/ResumeButton")
+focus_next = NodePath("../../CenterContainer2/ResumeButton")
+focus_previous = NodePath("../../SoundVolumeHBox/VolumeSlider")
+custom_fonts/font = SubResource( 2 )
+text = "Return   To   Menu"
+
+[connection signal="focus_entered" from="CenterContainer/PauseOptionsVBox/CenterContainer2/ResumeButton" to="." method="button_hover"]
+[connection signal="mouse_entered" from="CenterContainer/PauseOptionsVBox/CenterContainer2/ResumeButton" to="." method="button_hover"]
+[connection signal="pressed" from="CenterContainer/PauseOptionsVBox/CenterContainer2/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="focus_entered" from="CenterContainer/PauseOptionsVBox/FullscreenHBox/FullscreenButton" to="." method="button_hover"]
+[connection signal="mouse_entered" from="CenterContainer/PauseOptionsVBox/FullscreenHBox/FullscreenButton" to="." method="button_hover"]
+[connection signal="pressed" from="CenterContainer/PauseOptionsVBox/FullscreenHBox/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]
+[connection signal="focus_entered" from="CenterContainer/PauseOptionsVBox/SoundVolumeHBox/VolumeSlider" to="." method="button_hover"]
+[connection signal="mouse_entered" from="CenterContainer/PauseOptionsVBox/SoundVolumeHBox/VolumeSlider" to="." method="button_hover"]
+[connection signal="value_changed" from="CenterContainer/PauseOptionsVBox/SoundVolumeHBox/VolumeSlider" to="." method="_on_VolumeSlider_value_changed"]
+[connection signal="focus_entered" from="CenterContainer/PauseOptionsVBox/CenterContainer/ReturnToMenuButton" to="." method="button_hover"]
+[connection signal="mouse_entered" from="CenterContainer/PauseOptionsVBox/CenterContainer/ReturnToMenuButton" to="." method="button_hover"]
+[connection signal="pressed" from="CenterContainer/PauseOptionsVBox/CenterContainer/ReturnToMenuButton" to="." method="_on_ReturnToMenuButton_pressed"]

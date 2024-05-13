@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="ProceduralSky" id=1]
+sky_top_color = Color( 0, 0, 0, 1 )
+sky_horizon_color = Color( 0, 0.0666667, 0.117647, 1 )
+ground_bottom_color = Color( 0, 0, 0, 1 )
+ground_horizon_color = Color( 0, 0.0666667, 0.117647, 1 )
+sun_color = Color( 0, 0.321569, 1, 1 )
+sun_angle_max = 360.0
+sun_curve = 0.0499999
+sun_energy = 0.01
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 1 )
+glow_enabled = true
+glow_intensity = 1.49
+glow_strength = 1.04
+glow_bloom = 0.72
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 1
+emission_sphere_radius = 80.84
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 168.32
+initial_velocity_random = 0.8
+
+[sub_resource type="SpatialMaterial" id=4]
+emission_enabled = true
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 15.68
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SphereMesh" id=5]
+material = SubResource( 4 )
+radial_segments = 16
+rings = 8
+
+[node name="MenuBackground3D" type="Spatial"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.3278 )
+far = 10000.0
+
+[node name="Particles" type="Particles" parent="."]
+amount = 32
+lifetime = 10.0
+randomness = 0.98
+visibility_aabb = AABB( -16.6588, -16.2171, -16.8068, 33.3177, 32.4343, 33.6136 )
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 5 )

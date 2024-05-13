@@ -1,0 +1,5 @@
+
+Godot Breakout Keytool Info
+
+keytool -keyalg RSA -genkeypair -alias godotbreakoutkey -keypass public -keystore debug.keystore -storepass public -dname "CN=Android Debug,O=Android,C=US" -validity 9999 -deststoretype pkcs12
+

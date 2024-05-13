@@ -56,18 +56,20 @@ func enter_main_menu():
 	game_app.add_child(main_menu)
 
 
-func return_to_main_menu():
-	unpause_game()
+func return_to_main_menu(do_unpause=true):
 	
-	if Main.main_menu == null:
+	if do_unpause:
+		unpause_game()
+	
+	if Main.main_menu != null and is_instance_valid(Main.main_menu):
+			Main.main_menu.review()
+	else:
 		if Main.level != null:
 			Main.level.queue_free()
 		
 		yield(get_tree().create_timer(0.1), "timeout")
 		
 		enter_main_menu()
-	else:
-		Main.main_menu.review()
 
 
 func start_game():
@@ -93,4 +95,8 @@ func pause_game():
 
 func unpause_game():
 	pause_menu.visible = false
+	
 	get_tree().paused = false
+	
+	if Main.main_menu != null and is_instance_valid(Main.main_menu):
+		return_to_main_menu(false)

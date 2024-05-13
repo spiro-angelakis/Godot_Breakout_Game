@@ -38,7 +38,7 @@ func _physics_process(delta):
 #			direction.x = 1
 	
 	
-	var real_speed = speed + (Main.speed * 50) + (Main.extra_speed * 100)
+	var real_speed = speed + (Main.speed * 100) + (Main.extra_speed * 25)
 	
 	var velocity = direction * real_speed
 	
@@ -61,15 +61,17 @@ func _input(event):
 	
 	var pressed_menu = false
 	
-	if Input.is_action_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_cancel"):
 		pressed_menu = true
 	
-	if Input.is_action_pressed("ui_accept"):
+	if Input.is_action_just_released("ui_accept"):
 		pressed_menu = true
 	
 	if pressed_menu:
-		Main.game.pause_game()
-		return
+		if Main.level != null and is_instance_valid(Main.level):
+			if not Main.level.game_over:
+				Main.game.pause_game()
+				return
 	
 	
 	if Input.is_action_pressed("ui_left"):

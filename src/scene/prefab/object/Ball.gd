@@ -47,7 +47,7 @@ func go():
 func _physics_process(delta):
 	
 	if not stopped:
-		var real_speed = speed + (Main.speed * 100)
+		var real_speed = speed + (Main.speed * 50)
 		
 		var velocity = current_direction * real_speed
 		
@@ -77,14 +77,29 @@ func bounce(other_object):
 		wall_sfx.play()
 	
 	#if other_object.is_in_group("Bar"):
+	
+	var randomize_bounce = true
+	
 	if other_object is Paddle:
+		
+		randomize_bounce = false
+		
 		col_dir = Vector2(0,-1)
+		
+		col_dir.x = clamp((other_object.position.x - position.x) / 100, -0.95, 0.95)
+		col_dir.x = -col_dir.x
+		
+		print_debug(str("PADDLE HIT || " + "Ball Pos: " + str(position) + ", Paddle Pos: " + str(other_object.position) + ", Bounce Dir : " + str(col_dir)))
+		
 		other_object.bounced()
 	
-	if col_dir.x == 0:
-		col_dir.x = rand_range(-1,1)
-	if col_dir.y == 0:
-		col_dir.y = rand_range(-1,1)
+	if randomize_bounce:
+		if col_dir.x == 0:
+			col_dir.x = rand_range(-1,1)
+		if col_dir.y == 0:
+			col_dir.y = rand_range(-1,1)
+	
+	
 	current_direction = col_dir
 	
 
@@ -94,8 +109,7 @@ func break_ball(is_death=true):
 	if is_death:
 		death_sfx.play()
 	
-	visible = false
-	col.disabled = true
+	
 	
 	
 	var p = break_particles_prefab.instance().duplicate()
@@ -139,6 +153,8 @@ func _on_Ball_area_entered(area):
 		#if area is Brick:
 			area.break_brick()
 		if area.is_in_group("Bottom"):
+			visible = false
+			col.disabled = true
 			ball_death()
 
 

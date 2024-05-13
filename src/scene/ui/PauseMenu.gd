@@ -1,9 +1,13 @@
 extends Control
 
+onready var resume_button = $CenterContainer/PauseOptionsVBox/CenterContainer2/ResumeButton
+onready var fullscreen_button = $CenterContainer/PauseOptionsVBox/FullscreenHBox/FullscreenButton
+onready var volume_slider = $CenterContainer/PauseOptionsVBox/SoundVolumeHBox/VolumeSlider
+onready var return_to_menu_button = $CenterContainer/PauseOptionsVBox/CenterContainer/ReturnToMenuButton
 
 func viewed():
 	visible = true
-	$CenterContainer/PauseOptionsVBox/CenterContainer2/ResumeButton.grab_focus()
+	resume_button.grab_focus()
 
 
 func button_hover():
@@ -17,9 +21,11 @@ func button_select():
 func _on_FullscreenButton_pressed():
 	button_select()
 	if Main.fullscreen:
+		fullscreen_button.text = "Windowed"
 		Main.fullscreen = false
 		OS.window_fullscreen = false
 	else:
+		fullscreen_button.text = "Fullscreen"
 		Main.fullscreen = true
 		OS.window_fullscreen = true
 

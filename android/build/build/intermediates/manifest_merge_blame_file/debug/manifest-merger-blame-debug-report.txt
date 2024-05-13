@@ -1,0 +1,138 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="org.public.godotbreakout"
+4    android:installLocation="auto"
+5    android:versionCode="1"
+6    android:versionName="1.0" > <!-- glEsVersion is modified by the exporter, changing this value here has no effect. -->
+7    <uses-sdk
+8        android:minSdkVersion="34"
+9        android:targetSdkVersion="34" />
+10
+11    <supports-screens
+11-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:12:5-16:40
+12        android:largeScreens="true"
+12-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:15:9-36
+13        android:normalScreens="true"
+13-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:14:9-37
+14        android:smallScreens="true"
+14-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:13:9-36
+15        android:xlargeScreens="true" />
+15-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:16:9-37
+16
+17    <uses-feature
+17-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\src\debug\AndroidManifest.xml:10:5-78
+18        android:glEsVersion="0x00030000"
+18-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\src\debug\AndroidManifest.xml:10:19-51
+19        android:required="true" />
+19-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\src\debug\AndroidManifest.xml:10:52-75
+20
+21    <uses-permission
+21-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\src\debug\AndroidManifest.xml:11:5-108
+22        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+22-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\src\debug\AndroidManifest.xml:11:22-78
+23        android:maxSdkVersion="29" />
+23-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\src\debug\AndroidManifest.xml:11:79-105
+24
+25    <application
+25-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:30:5-94:19
+26        android:allowBackup="false"
+26-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:30:68-95
+27        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+27-->[androidx.core:core:1.2.0] C:\Users\Buddy\.gradle\caches\transforms-3\9bcb1a65f5938aad264f4d73e9a06f28\transformed\core-1.2.0\AndroidManifest.xml:24:18-86
+28        android:debuggable="true"
+29        android:extractNativeLibs="false"
+30        android:hasFragileUserData="false"
+30-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:30:118-152
+31        android:icon="@mipmap/icon"
+31-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:30:238-265
+32        android:isGame="true"
+32-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:30:96-117
+33        android:label="@string/godot_project_name_string"
+33-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:30:18-67
+34        android:requestLegacyExternalStorage="true" >
+34-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:30:153-197
+35        <activity
+35-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:65:9-88:20
+36            android:name="com.godot.game.GodotApp"
+36-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:66:13-37
+37            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|density|keyboard|navigation|screenLayout|uiMode"
+37-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:73:13-141
+38            android:excludeFromRecents="false"
+38-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:70:13-47
+39            android:exported="true"
+39-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:71:13-36
+40            android:label="@string/godot_project_name_string"
+40-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:67:13-62
+41            android:launchMode="singleTask"
+41-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:69:13-44
+42            android:resizeableActivity="true"
+42-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:74:13-47
+43            android:screenOrientation="landscape"
+43-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:72:13-50
+44            android:theme="@style/GodotAppSplashTheme" >
+44-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:68:13-55
+45            <intent-filter>
+45-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:80:13-87:29
+46                <action android:name="android.intent.action.MAIN" />
+46-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:81:17-69
+46-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:81:25-66
+47
+48                <category android:name="android.intent.category.LAUNCHER" />
+48-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:82:17-77
+48-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:82:27-74
+49
+50                <!--
+51                Enable access to OpenXR on Oculus mobile devices, no-op on other Android
+52                platforms.
+53                -->
+54                <category android:name="com.oculus.intent.category.VR" />
+54-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:86:17-74
+54-->C:\Users\Buddy\OneDrive\Documents\git_work\Godot_Breakout_Game\android\build\AndroidManifest.xml:86:27-71
+55            </intent-filter>
+56        </activity>
+57        <!-- Records the version of the Godot editor used for building -->
+58        <meta-data
+59            android:name="org.godotengine.editor.version"
+60            android:value="3.5.3.stable" /> <!-- Records the version of the Godot library -->
+61        <meta-data
+61-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:14:9-16:44
+62            android:name="org.godotengine.library.version"
+62-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:15:13-59
+63            android:value="3.5.3.stable" />
+63-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:16:13-41
+64
+65        <service android:name="org.godotengine.godot.GodotDownloaderService" />
+65-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:18:9-80
+65-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:18:18-77
+66
+67        <activity
+67-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:20:9-24:75
+68            android:name="org.godotengine.godot.utils.ProcessPhoenix"
+68-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:21:13-70
+69            android:exported="false"
+69-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:22:13-37
+70            android:process=":phoenix"
+70-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:23:13-39
+71            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+71-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:24:13-72
+72
+73        <provider
+73-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:26:9-34:20
+74            android:name="androidx.core.content.FileProvider"
+74-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:27:13-62
+75            android:authorities="org.public.godotbreakout.fileprovider"
+75-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:28:13-64
+76            android:exported="false"
+76-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:29:13-37
+77            android:grantUriPermissions="true" >
+77-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:30:13-47
+78            <meta-data
+78-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:31:13-33:64
+79                android:name="android.support.FILE_PROVIDER_PATHS"
+79-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:32:17-67
+80                android:resource="@xml/godot_provider_paths" />
+80-->[godot-lib.debug.aar] C:\Users\Buddy\.gradle\caches\transforms-3\bc57bf9a95885c2fd81c29e99b26c727\transformed\jetified-godot-lib.debug\AndroidManifest.xml:33:17-61
+81        </provider>
+82    </application>
+83
+84</manifest>

@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/paddle_powerup.wav-9c698ce6434284840a876c90d23a10ce.sample"
+
+[deps]
+
+source_file="res://src/assets/audio/sfx/powerup/paddle_powerup.wav"
+dest_files=[ "res://.import/paddle_powerup.wav-9c698ce6434284840a876c90d23a10ce.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
