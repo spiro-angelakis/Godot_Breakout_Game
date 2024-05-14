@@ -8,7 +8,9 @@ https://spiros-angelaki.itch.io/godot-breakout
 
 
 GAME FEATURES:
+
 Powerups:
+
 Extra Ball
 Faster Paddle
 Longer Paddle
