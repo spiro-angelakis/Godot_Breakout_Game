@@ -11,9 +11,12 @@ GAME FEATURES:
 
 Powerups:
 
-Extra Ball
-Faster Paddle
-Longer Paddle
+Extra Ball,
+
+Faster Paddle,
+
+Longer Paddle,
+
 Bomb
 
 
